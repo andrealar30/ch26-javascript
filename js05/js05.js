@@ -123,4 +123,118 @@ console.log (isOnline && isActive && "Estás autorizado");
 
 //Un operador de comparación compara sus operandos y devuelve un valor lógico en función de si la comparación es verdadera (true) o falsa (false). Los operandos pueden ser valores numéricos, de cadena, lógicos u objetos. Las cadenas se comparan según el orden lexicográfico estándar, utilizando valores Unicode. En la mayoría de los casos, si los dos operandos no son del mismo tipo, JavaScript intenta convertirlos a un tipo apropiado para la comparación. Este comportamiento generalmente resulta en comparar los operandos numéricamente.
 
-console.log(true == "true");
+console.log(true == "true"); //la conversion de true a numerico es 1 y "true" convertido a numerico da NaN por eso la respuesta es false y aqui es porque se esta comparando un string con un boleano y tenemos un true boleano y un "true" string y es cuando "true" se convierte en NaN
+
+console.log (23 < "40"); //true porque al convertir "40" si nos da un numero 40 y 23 si es menor a 40 por lo que si es true
+
+console.log("b" < "A"); //en unicode las minusculas valen más que las mayusculas por lo que b=98 y es mas grande que A mayuscula porque A= 65 por lo que nos daria un false
+
+console.log("Hola"<"HOLA"); //Hola es mayor que "HOLA" porque las minusculas valen más que las mayusculas por lo que "Hola"> "HOLA" por lo que es false
+
+console.log("Hola"< "123"); //Es false porque "Hola" en unicode suma los numeros de cada palabra y nos da un mayor valor y el valor del unicode de numeros es menor por lo que "Hola" es mayor que "123", "H"=72 y 1=49
+
+console.log("Hola" < "KeHace" + 1000);//true porque "KeHace" + 1000 es "KeHace1000" ya que se junta por la concatenación y primero lo suma por la presedencia de operadores ya que + tiene mayos precedencia que < menor que por lo que "KeHace1000" es más grande que "Hola" por el unicode y va comparando cada letra 
+console.log( "23" == 23); //true porque "23" lo convierte a numerico y 23 es numerico y como no debe ser estrictamente igual entonces es true
+
+//----------------------Comparación estricta------------
+
+/* 
+=== esctrictamente igual debe ser igual en el valor y el tipo
+!== estrictamente diferente, debe ser diferente en valor y el tipo
+*/
+
+console.log("23" === 23); //false porque uno es string y el otro es numerico
+console.log("true" === true); //false porque uno es "true" y es NaN y el otro es booleano
+console.log("45" !== 45); //true porque si son diferentes uno es string y el otro es numerico
+console.log("false" !== false); //true porque si son diferentes uno es NaN y el otro es booleano
+
+//Operador de asignación
+const myNumber = 34;
+
+//Desestructuración(Destructuring)
+/* 
+Es ima expresión en JS que hace posible extraer datos de arreglos o objetos y nos ayuda a realizar asignaciones más complejas.
+*/
+
+let dataA = 10;
+let dataB = 20;
+console.log(`a: ${dataA} , b:${dataB} `);
+//Quiero intercambiar los datos
+/* 
+let temporal;
+temporal = dataA;
+dataA = dataB;
+temporal = dataB; 
+*/
+//aplicando desestructuracion
+ [ dataA, dataB ] = [ dataB , dataA];
+console.log(`a: ${dataA} , b:${dataB} `);
+
+const calificaciones = [50, 80, 100, 30, 60, 99 ];
+// dataA = calificaciones[0]; // 50
+// dataB = calificaciones[1]; // 80
+let resto;
+[ dataA, , , dataB, ...resto  ] = calificaciones; 
+console.log(`a: ${dataA} , b:${dataB} `);
+console.log(resto);
+
+const primerAnio ={
+  dataA: "43 alumnos",
+  dataB: "50 alumnos",
+  dataC: "20 alumnos"
+};
+( {dataA, dataB } = primerAnio);
+
+console.log(`a: ${dataA} , b:${dataB} `);
+
+
+const auto = {
+    model: "Chevrolet",
+    year: 2023,
+    color : "red",
+    motor: "2.0"
+  }
+console.log("Modelo " + auto.model);  //auto["model"]
+
+/* const{model, color : colorAuto = "Pistache"} = auto; //ahí se le  está asignando el valor model del objeto auto a la constante model
+console.log("Modelo " + model + " color: " + color + " color no definido " + colorAuto); //si pones colorAuto no sirve porque no se ha definido que es 
+ */
+
+//------------Asignando nuevo nombre al atributo
+const{model, color : colorAuto} = auto; //se le pasa el atributo color a colorAuto
+console.log("Modelo " + model + " color: " + colorAuto); 
+
+// ------------------------------EJERCICIO-------------------------
+/* 
+Hacer una funcion que realice la division de 2 numeros y me entregue (return) en entero el cociente y residuo
+*/
+
+function division(dividendo, divisor) { //partes de la division
+    const cociente = Math.floor(dividendo/divisor); //redondeamos los numeros
+    const residuo = Math.floor(dividendo % divisor); //para obtener el residuo 
+    return {cociente, residuo};
+}
+    let {cociente, residuo} = division (9,5);
+console.log(`El resultado de 9/5, cociente: ${cociente},  residuo: ${residuo}`);
+
+/* //Ejercicio Alejandro
+const division = (numA, numB) => {
+    const results = {
+        "cociente": 0,
+        "residuo": 0
+    }
+ 
+    results.cociente = parseInt(numA/numB);
+    results.residuo = numA%numB;
+    return results;
+}
+//Ejercicio goyo
+function divison(a, b){
+    const cociente = parseInt(a / b);
+    const residuo = a % b;
+    const valor = {resultado : cociente, residuo : residuo};
+    return valor;
+}
+const valor = divison(9,5);
+console.log(`El resultado de 9/5, cociente: ${ valor.resultado }, residuo ${ valor.residuo } `); */
+
