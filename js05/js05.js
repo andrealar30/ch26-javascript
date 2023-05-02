@@ -214,7 +214,7 @@ function division(dividendo, divisor) { //partes de la division
     const residuo = Math.floor(dividendo % divisor); //para obtener el residuo 
     return {cociente, residuo};
 }
-    let {cociente, residuo} = division (9,5);
+    const {cociente, residuo} = division (9,5);
 console.log(`El resultado de 9/5, cociente: ${cociente},  residuo: ${residuo}`);
 
 /* //Ejercicio Alejandro
